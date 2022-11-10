@@ -1,0 +1,9 @@
+###
+
+POST http://localhost:3001/users
+{
+  "email":"quanghiep03198@gmail.com",
+  "password":"123123",
+  "username":"Quang Hiep",
+  "role":1
+}

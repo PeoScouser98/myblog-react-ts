@@ -1,6 +1,43 @@
 {
-	"topics": [],
+	"topics": [
+		{
+			"id": 1,
+			"title": "Javascript"
+		},
+		{
+			"id": 2,
+			"title": "React"
+		},
+		{
+			"id": 3,
+			"title": "Typescript"
+		},
+		{
+			"id": 4,
+			"title": "NodeJS"
+		},
+		{
+			"id": 5,
+			"title": "MongoDB"
+		},
+		{
+			"id": 6,
+			"title": "MongoDB"
+		},
+		{
+			"id": 7,
+			"title": "Graphql"
+		}
+	],
 	"comments": [],
 	"posts": [],
-	"users": []
+	"users": [
+		{
+			"email": "quanghiep03198@gmail.com",
+			"password": "$2a$10$J4IbjV755n/GOMQgxKYNA.FmUJXRWKi5J.AubSZKo62nKOMNFouDS",
+			"username": "Quang Hiệp",
+			"role": "Admin",
+			"id": 1
+		}
+	]
 }
