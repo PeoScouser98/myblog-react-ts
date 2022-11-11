@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../app/store";
+import { AppDispatch, RootState } from "../app/store(draft)";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { UserActions } from "@/app/reducer/auth.reducer";
+import { UserActions } from "@/app/reducer(draft)/auth.reducer";
 import { HiOutlineChevronDown } from "react-icons/hi2";
 const AccountDropdown = (userdata: any) => {
 	const { user }: any = useAppSelector((state) => state.user);
@@ -12,7 +12,7 @@ const AccountDropdown = (userdata: any) => {
 	};
 	return (
 		<div className="dropdown dropdown-end">
-			<label tabIndex={0} className="inline-flex items-center gap-3 rounded-lg shadow-lg p-2 bg-base-100">
+			<label tabIndex={0} className="inline-flex items-center gap-3 rounded-lg shadow-2xl p-2 bg-base-100">
 				<img src="https://placeimg.com/80/80/people" className="w-12 rounded-full" />
 				<span className="flex flex-col gap-1 justify-center">
 					<span className="font-semibold text-base-content">{user.username}</span>

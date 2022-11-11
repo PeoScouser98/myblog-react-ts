@@ -21,10 +21,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 						<Route path=":postId" element={<PostDetailPage />}></Route>
 					</Route>
 					<Route path="/blog" element={<ContactPage />}></Route>
-					<Route path="/signin" element={<SigninPage />}></Route>
-					<Route path="/signup" element={<SigninPage />}></Route>
 					{/* Not found page */}
 					<Route path="*" element={<NotFoundPage />}></Route>
+					<Route path="/signup" element={<SigninPage />}></Route>
+					<Route path="/signin" element={<SigninPage />}></Route>
 				</Route>
 			</Routes>
 		</BrowserRouter>

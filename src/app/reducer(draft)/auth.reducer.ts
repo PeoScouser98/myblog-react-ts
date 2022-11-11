@@ -1,6 +1,3 @@
-import { PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./../store";
-
 export type SigninData = {
 	email: string;
 	password: string;

@@ -20,12 +20,9 @@
 			"id": 5,
 			"title": "MongoDB"
 		},
+
 		{
 			"id": 6,
-			"title": "MongoDB"
-		},
-		{
-			"id": 7,
 			"title": "Graphql"
 		}
 	],

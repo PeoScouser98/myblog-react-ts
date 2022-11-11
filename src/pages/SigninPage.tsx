@@ -1,48 +1,66 @@
-// import { signinAction } from "../actions/user";
-import { RootState } from "@/app/store";
-import { UserData } from "@/app/reducer/auth.reducer";
+import { RootState } from "../app/store";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, Navigate } from "react-router-dom";
 import { Dispatch } from "redux";
-import { signin } from "../app/actions/user";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import googleLogo from "../assets/google.svg";
-import facebookLogo from "../assets/facebook.svg";
-const SigninPage = () => {
-	const dispatch: Dispatch<any> = useAppDispatch();
-	const { user }: any = useAppSelector((state: RootState) => state);
+import { useAppDispatch } from "../app/hooks";
+import { asyncSigninThunk } from "../app/slice/user.slice";
+// * firebase
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import { useDispatch, useSelector } from "react-redux";
+import StyledFirebaseAuth from "../components/StyledFirebaseAuth";
+import { config, uiConfig } from "../service/firebase.config";
+// * components
+import Logo from "../assets/logo.svg";
 
+firebase.initializeApp(config);
+
+type SigninPayload = {
+	email: string;
+	password: string;
+};
+const SigninPage = () => {
+	const dispatch = useAppDispatch();
+	const { user } = useSelector((state: RootState) => state);
+	const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+
+	// * Listen to the Firebase Auth state and set the local state.
+	useEffect(() => {
+		const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
+			setIsSignedIn(!!user);
+			if (user) {
+				const auth = await user.getIdToken(); // -> return access token from firebase
+			}
+		});
+		return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
+	}, []);
+
+	// * signin submit
 	const { register, handleSubmit } = useForm();
-	const onSubmit = (data: any) => {
-		dispatch(signin(data));
+	const onSubmit = async (data: any) => {
+		dispatch(asyncSigninThunk(data));
+		console.log("current user:>>", user);
 	};
+
+	// * If existing user data  in redux store -> meaning that has user logged in -> navigate to dashboard
+	if (user !== null) return <Navigate to="/" replace={true} />;
+
 	return (
-		<div className="fixed w-screen hero min-h-screen bg-base-200">
-			{user !== null && <Navigate to="/" replace={true} />}
-			<div className="hero-content flex-col lg:flex-row-reverse gap-10">
+		<div className="fixed w-screen h-screen hero bg-base-200">
+			<div className="hero-content sm:flex-col flex-row-reverse gap-10">
 				<div className="text-center lg:text-left">
+					<img src={Logo} alt="" className="max-w-[50%] mx-auto" />
 					<h1 className="text-5xl font-bold text-primary">Đăng nhập ngay!</h1>
 					<p className="py-6 text-2xl">
-						Hi! Bạn có thể đăng nhập để comment và chia sẻ các kiến thức về Javascript mọi người
+						Hi! Bạn có thể đăng nhập để comment và chia sẻ các kiến thức về Javascript cùng với mọi người.
 					</p>
 				</div>
 
 				<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 					<div className="card-body">
-						<Link
-							className="font-mono font-bold inline-flex justify-center items-center gap-2 text-4xl text-center mb-10"
-							to="/"
-						>
-							{"<CodeWithMe/>"}
-						</Link>
 						<div className="flex flex-col gap-2 w-full text-white">
-							<a className="btn bg-[#1976D2] hover:bg-[#0F6CC8] hover:border-[#1976D2] border-[#1976D2] btn-block gap-1">
-								<img src={facebookLogo} alt="" />
-								Đăng nhập với tài khoản Facebook
-							</a>
-							<a className="btn btn-block gap-2">
-								<img src={googleLogo} alt="" /> Đăng nhập với tài khoản Google
-							</a>
+							<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} className="btn btn-block gap-2" />
 						</div>
 						<div className="divider">Hoặc</div>
 						<form onSubmit={handleSubmit(onSubmit)}>

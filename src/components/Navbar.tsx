@@ -13,6 +13,7 @@ import {
 } from "react-icons/hi2";
 import AccountDropdown from "./AccountDropdown";
 import { useAppSelector } from "../app/hooks";
+import Logo from "../assets/logo.svg";
 
 const Navbar = () => {
 	const { user } = useAppSelector((state) => state);
@@ -20,23 +21,23 @@ const Navbar = () => {
 		<header className="w-full navbar px-5">
 			<div className="navbar-start px-2 mx-2 text-2xl font-semibold select-none">
 				<Link className="font-mono font-bold inline-flex items-center gap-2" to="/">
-					{"<CodeWithMe/>"}
+					<img src={Logo} alt="" className="w-[240px] max-h-24 object-cover -translate-x-[1.5rem]" />
 				</Link>
 			</div>
-			<div className="navbar-center flex-1 xs:hidden sm:hidden md:hidden block min-w-[375px] mx-auto">
-				<ul className="nav-menu">
+			<div className="navbar-center flex-1 xs:hidden sm:hidden md:hidden block w-fit mx-auto">
+				<ul className="nav-menu w-fit">
 					<li>
-						<NavLink to="/" className="inline-flex items-center gap-2">
+						<NavLink to="/" className="inline-flex justify-center items-center gap-2">
 							<HiOutlineHome /> Trang chủ
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/posts" className="inline-flex items-center gap-2">
+						<NavLink to="/posts" className="inline-flex justify-center items-center gap-2">
 							<HiOutlineDocumentText /> Bài viết
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/blog" className="inline-flex items-center gap-2">
+						<NavLink to="/blog" className="inline-flex justify-center items-center gap-2">
 							<HiOutlineChatBubbleLeftRight /> Blog
 						</NavLink>
 					</li>
@@ -48,10 +49,10 @@ const Navbar = () => {
 				) : (
 					<div className="inline-flex items-stretch gap-3">
 						<Link to="/signin" className="btn btn-primary">
-							Sign in
+							Đăng nhập
 						</Link>
 						<Link to="/signin" className="btn btn-outline hover:btn-secondary">
-							Sign up
+							Đăng ký
 						</Link>
 					</div>
 				)}

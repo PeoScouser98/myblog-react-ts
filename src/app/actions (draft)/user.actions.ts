@@ -1,7 +1,7 @@
-import { UserData } from "@/app/reducer/auth.reducer";
-import { UserActions } from "./../reducer/auth.reducer";
-import * as User from "../../api/auth";
-import { AppDispatch, DispatchAction } from "../store";
+import { UserActions } from "../reducer(draft)/auth.reducer";
+import * as User from "../../api/auth.api";
+import { AppDispatch } from "../store(draft)";
+import { createSlice } from "@reduxjs/toolkit";
 
 const signin = (data: any) => async (dispatch: AppDispatch) => {
 	try {
