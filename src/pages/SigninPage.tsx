@@ -53,7 +53,7 @@ const SigninPage = () => {
 					<img src={Logo} alt="" className="max-w-[50%] mx-auto" />
 					<h1 className="text-5xl font-bold text-primary">Đăng nhập ngay!</h1>
 					<p className="py-6 text-2xl">
-						Hi! Bạn có thể đăng nhập để comment và chia sẻ các kiến thức về Javascript cùng với mọi người.
+						Hi! Bạn có thể đăng nhập để comment và chia sẻ các kiến thức về Javascript cùng với mọi người
 					</p>
 				</div>
 
